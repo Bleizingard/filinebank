@@ -51,13 +51,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'page';
 $route['page/(any:)'] = 'page/$1';
+$route['dashboard'] = 'page/dashboard';
 $route['signup'] = 'account/signup';
 $route['signin'] = 'account/signin';
 $route['signout'] = 'account/signout';
 $route['signup/success'] = 'account/success/signup';
 $route['account'] = 'account/dashboard';
 $route['account/me'] = 'account/me';
-$route['account/dashboard'] = 'account/dashboard';
 $route['account/success/(any:)'] = 'account/success/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

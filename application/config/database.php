@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'ci-materialize',
-	'password' => 'ci-materializepwd',
-	'database' => 'ci-materialize',
+	'hostname' => 'localhost',
+	'username' => 'filinebank',
+	'password' => 'filinebankpwd',
+	'database' => 'filine_bank',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

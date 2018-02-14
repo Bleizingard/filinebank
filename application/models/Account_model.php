@@ -1,32 +1,38 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Account_model extends CI_Model 
+defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
+class Account_model extends CI_Model
 {
 	public function __construct()
 	{
-		$this->load->database();
+		$this->load->database ();
 	}
-	
-	public function insert_user($login, $email, $password)
+	public function insert_client(array $user_data)
 	{
-		$user = array (
-				"login" => set_value ( 'login' ),
-				"email" => set_value ( 'email' ),
-				"password" => password_hash ( set_value ( 'password' ), PASSWORD_BCRYPT ) );
+		foreach ( $user_data as $key => $value )
+		{
+			if ($key === "Mdp")
+			{
+				$user [$key] = password_hash ( $value, PASSWORD_BCRYPT );
+			}
+			else
+			{
+				$user [$key] = $value;
+			}
+		}
 		
-		return $this->db->insert ( 'user', $user );
+		$user["idSalarie"] = $this->get_salarie_less_client($user_data["idBanque"])->row()->idSalarie;
+		
+		return $this->db->insert ( 'client', $user );
 	}
-	
 	public function check_credential($login, $password)
 	{
-		$user = $this->get_user_by_login($login);
+		$user = $this->get_client_by_email ( $login );
 		
-		if($user->num_rows())
+		if ($user->num_rows ())
 		{
-			$row = $user->row();
+			$row = $user->row ();
 			
-			if(password_verify($password, $row->password))
+			if (password_verify ( $password, $row->Mdp ))
 			{
 				return $row;
 			}
@@ -34,18 +40,32 @@ class Account_model extends CI_Model
 		
 		return false;
 	}
-	
-	public function get_user_by_login(string $login)
+	public function get_client_by_email(string $email)
 	{
-		$user = $this->db->get_where("user", array("login" => $login), 1);
+		$user = $this->db->get_where ( "client", array (
+				"Mail" => $email ), 1 );
+		
+		return $user;
+	}
+	public function get_client_by_id(int $id)
+	{
+		$user = $this->db->get_where ( "client", array (
+				"idClient" => $id ), 1 );
 		
 		return $user;
 	}
 	
-	public function get_user_by_id(int $id)
-	{
-		$user = $this->db->get_where("user", array("id" => $id), 1);
+	private function get_salarie_less_client(int $idBanque)
+	{	
+		$this->db->select('S.idSalarie, COUNT(*) AS NumClient');
+		$this->db->from('salarie AS S');
+		$this->db->join('client AS C', 'S.idSalarie = C.idSalarie', 'LEFT');
+		$this->db->where('C.idBanque', $idBanque);
+		$this->db->order_by('NumClient', 'DESC');
+		$this->db->limit(1);
 		
-		return $user;
+		$salarie = $this->db->get();
+		
+		return $salarie;
 	}
 }

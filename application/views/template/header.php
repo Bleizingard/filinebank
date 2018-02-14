@@ -11,7 +11,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
 			<ul id="nav-mobile" class="side-nav fixed">
-				<li class="logo"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+				<li class="logo"><a id="logo-container" href="<?php echo base_url(); ?>" class="brand-logo">Filine Bank</a>
 					<object id="front-page-logo" type="image/svg+xml"
 						data="res/materialize.svg">Your browser does not support SVG</object></li>
 				<li><a href="<?php echo base_url(); ?>">Home</a></li>
@@ -31,7 +31,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 		<!-- MENU PRINCIPAL (Non connnecté) -->
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="#" class="brand-logo">Logo</a>
+			<a id="logo-container" href="#" class="brand-logo">Filine Bank</a>
 			<ul class="right hide-on-med-and-down">
 				<li><a href="<?php echo base_url(); ?>">Home</a></li>
 				<li><a href="<?php echo base_url("signin"); ?>">Sign in</a></li>

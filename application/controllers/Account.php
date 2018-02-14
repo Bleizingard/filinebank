@@ -11,6 +11,7 @@ class Account extends CI_Controller
 		parent::__construct ();
 		
 		$this->load->model("account_model");
+		$this->load->model("bank_model");
 		$this->load->helper ( "form" );
 		$this->load->library ( 'form_validation' );
 	}
@@ -65,7 +66,7 @@ class Account extends CI_Controller
 			
 			$this->session->set_userdata("user", $user_data);
 			
-			redirect('/account/me');
+			redirect('/dashboard');
 		}
 	}
 	public function success($type_success = "default")
@@ -125,14 +126,14 @@ class Account extends CI_Controller
 			/*
 			 * Sign Up Form Prep Data
 			 */
-			$data ["form_login"] = array (
-					"name" => 'login',
-					"id" => 'login',
-					"value" => set_value ( "login" ),
-					"class" => (empty ( form_error ( "login" ) )) ? "validate" : "validate invalid",
+			$data ["form_email"] = array (
+					"name" => 'email',
+					"id" => 'email',
+					"value" => set_value ( "email" ),
+					"class" => (empty ( form_error ( "email" ) )) ? "validate" : "validate invalid",
 					"required" => "required" );
-			$data ["form_login_label"] = array (
-					"data-error" => form_error ( 'login', null, null ),
+			$data ["form_email_label"] = array (
+					"data-error" => form_error ( 'email', null, null ),
 					"data-success" => "OK" );
 			
 			$data ["form_password"] = array (
@@ -154,15 +155,113 @@ class Account extends CI_Controller
 					"data-error" => form_error ( 'password_confirm', null, null ),
 					"data-success" => "OK" );
 			
-			$data ["form_email"] = array (
-					"name" => 'email',
-					"id" => 'email',
-					"value" => set_value ( "email" ),
-					"class" => (empty ( form_error ( "email" ) )) ? "validate" : "validate invalid",
+			$data ["form_firstname"] = array (
+					"name" => 'firstname',
+					"id" => 'firstname',
+					"value" => set_value ( "firstname" ),
+					"class" => (empty ( form_error ( "firstname" ) )) ? "validate" : "validate invalid",
 					"required" => "required" );
-			$data ["form_email_label"] = array (
-					"data-error" => form_error ( 'email', null, null ),
+			$data ["form_firstname_label"] = array (
+					"data-error" => form_error ( 'firstname', null, null ),
 					"data-success" => "OK" );
+			
+			$data ["form_lastname"] = array (
+					"name" => 'lastname',
+					"id" => 'lastname',
+					"value" => set_value ( "lastname" ),
+					"class" => (empty ( form_error ( "lastname" ) )) ? "validate" : "validate invalid",
+					"required" => "required" );
+			$data ["form_lastname_label"] = array (
+					"data-error" => form_error ( 'lastname', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_address"] = array (
+					"name" => 'address',
+					"id" => 'address',
+					"value" => set_value ( "address" ),
+					"class" => (empty ( form_error ( "address" ) )) ? "validate" : "validate invalid",
+					"required" => "required" );
+			$data ["form_address_label"] = array (
+					"data-error" => form_error ( 'address', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_zipcode"] = array (
+					"name" => 'zipcode',
+					"id" => 'zipcode',
+					"value" => set_value ( "zipcode" ),
+					"class" => (empty ( form_error ( "zipcode" ) )) ? "validate" : "validate invalid",
+					"required" => "required" );
+			$data ["form_zipcode_label"] = array (
+					"data-error" => form_error ( 'zipcode', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_city"] = array (
+					"name" => 'city',
+					"id" => 'city',
+					"value" => set_value ( "city" ),
+					"class" => (empty ( form_error ( "city" ) )) ? "validate" : "validate invalid",
+					"required" => "required" );
+			$data ["form_city_label"] = array (
+					"data-error" => form_error ( 'city', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_country"] = array (
+					"name" => 'country',
+					"id" => 'country',
+					"value" => set_value ( "country" ),
+					"class" => (empty ( form_error ( "country" ) )) ? "validate" : "validate invalid",
+					"required" => "required" );
+			$data ["form_country_label"] = array (
+					"data-error" => form_error ( 'country', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_phone"] = array (
+					"name" => 'phone',
+					"id" => 'phone',
+					"value" => set_value ( "phone" ),
+					"class" => (empty ( form_error ( "phone" ) )) ? "validate" : "validate invalid",
+					"type" => "tel",
+					"required" => "required" );
+			$data ["form_phone_label"] = array (
+					"data-error" => form_error ( 'phone', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_num_child"] = array (
+					"name" => 'num_child',
+					"id" => 'num_child',
+					"value" => set_value ( "num_child" ),
+					"class" => (empty ( form_error ( "num_child" ) )) ? "validate" : "validate invalid",
+					"type" => "number",
+					"required" => "required" );
+			$data ["form_num_child_label"] = array (
+					"data-error" => form_error ( 'num_child', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_social_group"] = array (
+					"name" => 'social_group',
+					"id" => 'social_group',
+					"value" => set_value ( "social_group" ),
+					"class" => (empty ( form_error ( "social_group" ) )) ? "validate" : "validate invalid",
+					"required" => "required" );
+			$data ["form_social_group_label"] = array (
+					"data-error" => form_error ( 'social_group', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_work"] = array (
+					"name" => 'work',
+					"id" => 'work',
+					"value" => set_value ( "work" ),
+					"class" => (empty ( form_error ( "work" ) )) ? "validate" : "validate invalid",
+					"required" => "required" );
+			$data ["form_work_label"] = array (
+					"data-error" => form_error ( 'work', null, null ),
+					"data-success" => "OK" );
+			
+			$data ["form_bank_option"] = $this->bank_model->get_bank_all()->result();
+			$data ["form_bank_label"] = array (
+					"data-error" => form_error ( 'bank', null, null ),
+					"data-success" => "OK" );
+			
 			
 			$this->load->view ( 'template/head', $data );
 			$this->load->view ( 'template/header' );
@@ -172,9 +271,29 @@ class Account extends CI_Controller
 		else
 		{
 			/*
+			 * Prep Array for Insert Into BDD
+			 */
+			$user_data = array(
+					"Mail" => set_value("email"),
+					"Mdp" => set_value("password"),
+					"Civilite" => set_value("gender"),
+					"Prenom" => set_value("firstname"),
+					"Nom" => set_value("lastname"),
+					"Adresse" => set_value("address"),
+					"CodePostal" => set_value("zipcode"),
+					"Ville" => set_value("city"),
+					"Pays" => set_value("country"),
+					"Telephone" => set_value("phone"),
+					"Enfants" => set_value("num_child"),
+					"RegimeSocial" => set_value("social_group"),
+					"Profession" => set_value("work"),
+					"idBanque"	=> set_value("bank")
+			);
+			
+			/*
 			 * Insert into BDD
 			 */
-			if ($this->account_model->insert_user(set_value ( "login" ), set_value ( "email" ), set_value ( "password" )))
+			if ($this->account_model->insert_client($user_data))
 			{
 				$this->success ("signup");
 				
@@ -204,25 +323,6 @@ class Account extends CI_Controller
 		{
 			redirect('/signin');
 		}
-	}
-	
-	public function dashboard()
-	{
-		if($this->toolbox->is_logged())
-		{
-			// Page Title
-			$data ["title_page"] = "";
-			$data ["user_data"] = $this->session->get_userdata("user");
-			
-			$this->load->view ( 'template/head', $data );
-			$this->load->view ( 'template/header' );
-			$this->load->view ( 'account/dashboard', $data );
-			$this->load->view ( 'template/footer' );
-		}
-		else
-		{
-			redirect('/signin');
-		}
-	}
+	}	
 }
 ?>

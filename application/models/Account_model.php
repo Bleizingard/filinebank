@@ -20,7 +20,7 @@ class Account_model extends CI_Model
 			}
 		}
 		
-		$user["idSalarie"] = $this->get_salarie_less_client(intval($user_data["idBanque"]))->row()->idSalarie;
+		$user["idSalarie"] = $this->get_salarie_less_client($user_data["idBanque"])->row()->idSalarie;
 		
 		return $this->db->insert ( 'client', $user );
 	}
@@ -55,7 +55,7 @@ class Account_model extends CI_Model
 		return $user;
 	}
 	
-	private function get_salarie_less_client(int $idBanque)
+	private function get_salarie_less_client($idBanque)
 	{	
 		$this->db->select('S.idSalarie, COUNT(*) AS NumClient');
 		$this->db->from('salarie AS S');

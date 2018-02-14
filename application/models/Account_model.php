@@ -20,7 +20,7 @@ class Account_model extends CI_Model
 			}
 		}
 		
-		$user["idSalarie"] = $this->get_salarie_less_client($user_data["idBanque"])->row()->idSalarie;
+		$user["idSalarie"] = $this->get_salarie_less_client((int) $user_data["idBanque"])->row()->idSalarie;
 		
 		return $this->db->insert ( 'client', $user );
 	}

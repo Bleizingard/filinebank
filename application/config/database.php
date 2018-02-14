@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '10.10.100.248',
+	'hostname' => 'localhost',
 	'username' => 'kami',
 	'password' => 'Poilux77',
 	'database' => 'filine_bank',

@@ -317,7 +317,8 @@ class Account extends CI_Controller
 			
 			$this->load->view ( 'template/head', $data );
 			$this->load->view ( 'template/header' );
-			$this->load->view ( 'account/profile', $data );
+			//$this->load->view ( 'account/profile', $data );
+			$this->load->view ( 'maintenance/construction' );
 			$this->load->view ( 'template/footer' );
 		}
 		else

@@ -60,5 +60,6 @@ $route['signup/success'] = 'account/success/signup';
 $route['account'] = 'account/dashboard';
 $route['account/me'] = 'account/me';
 $route['account/success/(:any)'] = 'account/success/$1';
+$route['product/subcribe/(:any)'] = 'product/subcribe/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

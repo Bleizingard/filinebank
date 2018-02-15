@@ -17,23 +17,31 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 				<li class="no-padding">
 					<ul class="collapsible collapsible-accordion">
 						<li class="bold"><a
-							class="collapsible-header waves-effect waves-teal">Bank Account</a>
+							class="collapsible-header waves-effect waves-teal">Consultation</a>
 							<div class="collapsible-body" style="display: none;">
 								<ul>
-									<li><a href="<?php echo base_url(); ?>">Consultation</a></li>
-								</ul>
-							</div></li>
-						<li class="bold"><a
-							class="collapsible-header waves-effect waves-teal">Insurance</a>
-							<div class="collapsible-body">
-								<ul>
-									<li><a href="<?php echo base_url(); ?>">Consultation</a></li>
+									<li><a href="<?php echo base_url(); ?>">Bank Account</a></li>
+									<li><a href="<?php echo base_url(); ?>">Insurance</a></li>
 								</ul>
 							</div></li>
 					</ul>
 				</li>
-				<li><a href="<?php echo base_url(); ?>">Add a new product</a></li>
-				<li><a class="waves-effect waves-teal"
+				<li class="no-padding">
+					<ul class="collapsible collapsible-accordion">
+						<li class="bold"><a
+							class="collapsible-header waves-effect waves-teal">Add new product</a>
+							<div class="collapsible-body" style="display: none;">
+								<ul>
+									<li><a href="<?php echo base_url(); ?>">Bank Account</a></li>
+									<li><a href="<?php echo base_url(); ?>">Saving Account</a></li>
+									<li><a href="<?php echo base_url(); ?>">Life Insurance</a></li>
+									<li><a href="<?php echo base_url(); ?>">Mutual Health</a></li>
+								</ul>
+							</div></li>
+					</ul>
+				</li>
+				<li><div class="divider"></div></li>	
+				<li class="no-padding" ><a class="waves-effect waves-teal"
 					href="<?php echo base_url('account/me'); ?>">My Account</a></li>
 				<li><div class="divider"></div></li>
 				<li><a class="waves-effect waves-teal"

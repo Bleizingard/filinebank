@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <h5 class="header col s12 light">A modern bank made by students</h5>
         </div>
         <div class="row center">
-          <a href="<?php echo base_url('/signin'); ?>" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Started</a>
+          <a href="<?php echo base_url('/get/android'); ?>" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get Android App</a>
         </div>
         <br><br>
 

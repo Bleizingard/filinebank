@@ -32,10 +32,10 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 							class="collapsible-header waves-effect waves-teal">Add new product</a>
 							<div class="collapsible-body" style="display: none;">
 								<ul>
-									<li><a href="<?php echo base_url(); ?>">Bank Account</a></li>
-									<li><a href="<?php echo base_url(); ?>">Saving Account</a></li>
-									<li><a href="<?php echo base_url(); ?>">Life Insurance</a></li>
-									<li><a href="<?php echo base_url(); ?>">Mutual Health</a></li>
+									<li><a href="<?php echo base_url("product/subcribe/courant"); ?>">Bank Account</a></li>
+									<li><a href="<?php echo base_url("product/subcribe/epargne"); ?>">Saving Account</a></li>
+									<li><a href="<?php echo base_url("product/subcribe/vie"); ?>">Life Insurance</a></li>
+									<li><a href="<?php echo base_url("product/subcribe/mutuelle"); ?>">Mutual Health</a></li>
 								</ul>
 							</div></li>
 					</ul>

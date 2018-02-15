@@ -31,7 +31,18 @@ class Page extends CI_Controller
 		
 		$this->load->view('template/head', $data);
 		$this->load->view('template/header');
-		$this->load->view('page/dashboard', $data);
+		//$this->load->view('page/dashboard', $data);
+		$this->load->view('maintenance/construction');
+		$this->load->view('template/footer');
+	}
+	
+	public function maintenance()
+	{
+		$data["title_page"] = "Maintenance";
+		
+		$this->load->view('template/head', $data);
+		$this->load->view('template/header');
+		$this->load->view('maintenance/construction');
 		$this->load->view('template/footer');
 	}
 }

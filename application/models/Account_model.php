@@ -55,7 +55,7 @@ class Account_model extends CI_Model
 		return $user;
 	}
 	
-	private function get_salarie_less_client($idBanque)
+	private function get_salarie_less_client(int $idBanque)
 	{	
 		$this->db->select('S.idSalarie, COUNT(*) AS NumClient');
 		$this->db->from('salarie AS S');

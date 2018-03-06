@@ -6,11 +6,11 @@ class Account_model extends CI_Model
 	{
 		$this->load->database ();
 	}
-	public function insert_client(array $user_data)
+	public function insert_client(array $user_data, array $address_data)
 	{
 		foreach ( $user_data as $key => $value )
 		{
-			if ($key === "Mdp")
+			if ($key === "Password")
 			{
 				$user [$key] = password_hash ( $value, PASSWORD_BCRYPT );
 			}
@@ -20,9 +20,19 @@ class Account_model extends CI_Model
 			}
 		}
 		
-		$user["idSalarie"] = $this->get_salarie_less_client($user_data["idBanque"])->row()->idSalarie;
+		$user["idWorker"] = $this->get_salarie_less_client($user_data["idBank"])->row()->Id;
 		
-		return $this->db->insert ( 'client', $user );
+		if ($this->db->insert('Address', $address_data))
+		{
+			$idAddress = $this->db->insert_id();
+			
+			$user['idAddress'] = $idAddress;
+			
+			return $this->db->insert ( 'Customer', $user );
+		}
+		
+		
+		return false;
 	}
 	public function check_credential($login, $password)
 	{
@@ -32,7 +42,7 @@ class Account_model extends CI_Model
 		{
 			$row = $user->row ();
 			
-			if (password_verify ( $password, $row->Mdp ))
+			if (password_verify ( $password, $row->Password ))
 			{
 				return $row;
 			}
@@ -42,25 +52,30 @@ class Account_model extends CI_Model
 	}
 	public function get_client_by_email(string $email)
 	{
-		$user = $this->db->get_where ( "client", array (
-				"Mail" => $email ), 1 );
+		$user = $this->db->get_where ( "Customer", array (
+				"Email" => $email ), 1 );
 		
 		return $user;
 	}
 	public function get_client_by_id(int $id)
 	{
-		$user = $this->db->get_where ( "client", array (
-				"idClient" => $id ), 1 );
+		$user = $this->db->get_where ( "Customer", array (
+				"Id" => $id ), 1 );
 		
 		return $user;
 	}
 	
+	public function get_social_plan()
+	{
+		return $this->db->get("SocialPlan");
+	}
+	
 	private function get_salarie_less_client(int $idBanque)
 	{	
-		$this->db->select('S.idSalarie, COUNT(*) AS NumClient');
-		$this->db->from('salarie AS S');
-		$this->db->join('client AS C', 'S.idSalarie = C.idSalarie', 'LEFT');
-		$this->db->where('C.idBanque', $idBanque);
+		$this->db->select('W.Id, COUNT(*) AS NumClient');
+		$this->db->from('Worker AS W');
+		$this->db->join('Customer AS C', 'W.Id = C.idWorker', 'LEFT');
+		$this->db->where('W.idBank', $idBanque);
 		$this->db->order_by('NumClient', 'DESC');
 		$this->db->limit(1);
 		

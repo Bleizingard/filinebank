@@ -12,6 +12,7 @@ class Account extends CI_Controller
 		
 		$this->load->model("account_model");
 		$this->load->model("bank_model");
+		$this->load->model("city_model");
 		$this->load->helper ( "form" );
 		$this->load->library ( 'form_validation' );
 	}
@@ -122,6 +123,8 @@ class Account extends CI_Controller
 		// Page Title
 		$data ["title_page"] = "";
 		
+		$data ["city_list"] = $this->city_model->get_cities();
+		
 		if ($this->form_validation->run () == FALSE)
 		{
 			/*
@@ -186,21 +189,22 @@ class Account extends CI_Controller
 					"data-error" => form_error ( 'address', null, null ),
 					"data-success" => "OK" );
 			
-			$data ["form_zipcode"] = array (
-					"name" => 'zipcode',
-					"id" => 'zipcode',
-					"value" => set_value ( "zipcode" ),
-					"class" => (empty ( form_error ( "zipcode" ) )) ? "validate" : "validate invalid",
+			$data ["form_number_address"] = array (
+					"name" => 'number',
+					"id" => 'number',
+					"value" => set_value ( "number" ),
+					"type" => "number",
+					"class" => (empty ( form_error ( "number" ) )) ? "validate" : "validate invalid",
 					"required" => "required" );
-			$data ["form_zipcode_label"] = array (
-					"data-error" => form_error ( 'zipcode', null, null ),
+			$data ["form_number_address_label"] = array (
+					"data-error" => form_error ( 'number', null, null ),
 					"data-success" => "OK" );
 			
 			$data ["form_city"] = array (
 					"name" => 'city',
 					"id" => 'city',
 					"value" => set_value ( "city" ),
-					"class" => (empty ( form_error ( "city" ) )) ? "validate" : "validate invalid",
+					"class" => (empty ( form_error ( "city" ) )) ? "autocomplete validate" : "autocomplete validate invalid",
 					"required" => "required" );
 			$data ["form_city_label"] = array (
 					"data-error" => form_error ( 'city', null, null ),
@@ -237,13 +241,7 @@ class Account extends CI_Controller
 			$data ["form_num_child_label"] = array (
 					"data-error" => form_error ( 'num_child', null, null ),
 					"data-success" => "OK" );
-			
-			$data ["form_social_group"] = array (
-					"name" => 'social_group',
-					"id" => 'social_group',
-					"value" => set_value ( "social_group" ),
-					"class" => (empty ( form_error ( "social_group" ) )) ? "validate" : "validate invalid",
-					"required" => "required" );
+			$data["form_social_group_option"] = $this->account_model->get_social_plan()->result();
 			$data ["form_social_group_label"] = array (
 					"data-error" => form_error ( 'social_group', null, null ),
 					"data-success" => "OK" );
@@ -257,7 +255,6 @@ class Account extends CI_Controller
 			$data ["form_work_label"] = array (
 					"data-error" => form_error ( 'work', null, null ),
 					"data-success" => "OK" );
-			
 			$data ["form_bank_option"] = $this->bank_model->get_bank_all()->result();
 			$data ["form_bank_label"] = array (
 					"data-error" => form_error ( 'bank', null, null ),
@@ -271,30 +268,34 @@ class Account extends CI_Controller
 		}
 		else
 		{
+			$address_data = array (
+					"Number" => set_value("number"),
+					"Street" => set_value("address"),
+					"idCity" => array_search(set_value("city"), $data["city_list"])
+			);
+			
+			
+			
 			/*
 			 * Prep Array for Insert Into BDD
 			 */
 			$user_data = array(
-					"Mail" => set_value("email"),
-					"Mdp" => set_value("password"),
-					"Civilite" => set_value("gender"),
-					"Prenom" => set_value("firstname"),
-					"Nom" => set_value("lastname"),
-					"Adresse" => set_value("address"),
-					"CodePostal" => set_value("zipcode"),
-					"Ville" => set_value("city"),
-					"Pays" => set_value("country"),
-					"Telephone" => set_value("phone"),
-					"Enfants" => set_value("num_child"),
-					"RegimeSocial" => set_value("social_group"),
-					"Profession" => set_value("work"),
-					"idBanque"	=> set_value("bank")
+					"Email" => set_value("email"),
+					"Password" => set_value("password"),
+					"Gender" => set_value("gender"),
+					"Firstname" => set_value("firstname"),
+					"Lastname" => set_value("lastname"),
+					"Phone" => set_value("phone"),
+					"Child" => set_value("num_child"),
+					"SocialPlan" => set_value("social_group"),
+					"Work" => set_value("work"),
+					"idBank" => set_value("bank")
 			);
 			
 			/*
 			 * Insert into BDD
 			 */
-			if ($this->account_model->insert_client($user_data))
+			if ($this->account_model->insert_client($user_data, $address_data))
 			{
 				$this->success ("signup");
 				

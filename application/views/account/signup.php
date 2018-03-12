@@ -9,7 +9,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 			<div class="row">
 			<div class="input-field col s2">
 				<select name="gender">
-					<option value="Monsieur" <?php echo set_select("gender", "Monsieur"); ?>>Sir</option>
+					<option value="Mister" <?php echo set_select("gender", "Mister"); ?>>Mister</option>
 					<option value="Madame" <?php echo set_select("gender", "Madame"); ?>>Madame</option>
 				</select>
 			</div>
@@ -54,7 +54,14 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 				</div>
 		</div>
 		<div class="row">
-			<div class="input-field col s12">
+			<div class="input-field col s2">
+				<?php
+				echo form_input ( $form_number_address );
+				
+				echo form_label ( "Number", "number_address", $form_number_address_label );
+				?>
+			</div>
+			<div class="input-field col s10">
 				<?php
 				echo form_input ( $form_address );
 				
@@ -63,27 +70,11 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 				</div>
 		</div>
 		<div class="row">
-			<div class="input-field col s3">
-				<?php
-				echo form_input ( $form_zipcode );
-				
-				echo form_label ( "ZIP Code", "zipcode", $form_zipcode_label );
-				?>
-				</div>
-			<div class="input-field col s9">
+			<div class="input-field col s12">
 				<?php
 				echo form_input ( $form_city );
 				
 				echo form_label ( "City", "city", $form_city_label );
-				?>
-				</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<?php
-				echo form_input ( $form_country );
-				
-				echo form_label ( "Country", "country", $form_country_label );
 				?>
 				</div>
 		</div>
@@ -107,8 +98,19 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 		</div>
 		<div class="row">
 			<div class="input-field col s12">
+				<select name="social_group">
+					<option disabled
+						<?php echo (set_value("social_group") == NULL) ? "selected" : ""; ?>>Choose
+						your social plan</option>
+						<?php
+						foreach ( $form_social_group_option as $option )
+						{
+							printf ( '<option %s value="%s">%s</option>', set_select ( "social_group", $option->Id ), $option->Id, $option->Name );
+						}
+						?>
+					</select>
+				
 				<?php
-				echo form_input ( $form_social_group );
 				
 				echo form_label ( "Your Social Group", "social_group", $form_social_group_label );
 				?>
@@ -132,7 +134,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 						<?php
 						foreach ( $form_bank_option as $option )
 						{
-							printf ( '<option %s value="%s">%s</option>', set_select ( "bank", $option->idBanque ), $option->idBanque, $option->Nom );
+							printf ( '<option %s value="%s">%s</option>', set_select ( "bank", $option->Id ), $option->Id, $option->Name );
 						}
 						?>
 					</select>

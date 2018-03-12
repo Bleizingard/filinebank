@@ -6,7 +6,7 @@ $config = array (
 				array (
 						'field' => 'email',
 						'label' => 'Email',
-						'rules' => 'trim|no_space|strtolower|required|valid_email|max_length[50]|is_unique[client.Mail]' ),
+						'rules' => 'trim|no_space|strtolower|required|valid_email|max_length[50]|is_unique[Customer.Email]' ),
 				array (
 						'field' => 'firstname',
 						'label' => 'Firstname',
@@ -28,17 +28,9 @@ $config = array (
 						'label' => 'Address',
 						'rules' => 'trim|no_space|strtolower|required|max_length[50]' ),
 				array (
-						'field' => 'zipcode',
-						'label' => 'Zip Code',
-						'rules' => 'trim|no_space|required|max_length[5]|min_length[5]' ),
-				array (
-						'field' => 'city',
-						'label' => 'City',
-						'rules' => 'trim|strtoupper|required' ),
-				array (
-						'field' => 'country',
-						'label' => 'Country',
-						'rules' => 'trim|strtoupper|required' ),
+						'field' => 'number',
+						'label' => 'Number',
+						'rules' => 'trim|no_space|required' ),
 				array (
 						'field' => 'phone',
 						'label' => 'Phone',
@@ -67,7 +59,30 @@ $config = array (
 				array (
 						'field' => 'password',
 						'label' => 'Password',
-						'rules' => 'trim' ) ) );
+						'rules' => 'trim' ) ),
+		'product/subcribe/checking' => array (
+				array (
+						'field' => 'plan',
+						'label' => 'Plan',
+						'rules' => 'required' ),
+				array (
+						'field' => 'card',
+						'label' => 'Card',
+						'rules' => 'required' ),
+				array (
+						'field' => 'tos',
+						'label' => 'Terms of Sales',
+						'rules' => 'required' ) ),
+		'product/subcribe/saving' => array (
+				array (
+						'field' => 'plan',
+						'label' => 'Plan',
+						'rules' => 'required' ),
+				array (
+						'field' => 'tos',
+						'label' => 'Terms of Sales',
+						'rules' => 'required' ) )
+				);
 
 if (! function_exists ( 'no_space' ))
 {

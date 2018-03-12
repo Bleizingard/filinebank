@@ -42,5 +42,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- Compiled and minified JavaScript -->
  	<script src="<?php echo base_url("assets/js/materialize.min.js");?>"></script>
  	<script src="<?php echo base_url("assets/js/init.js");?>"></script>
+ 	
+ 	<script type="text/javascript">
+ 	<?php 
+ 		if(!empty($city_list)):
+ 	?>
+ 		$(document).ready(function(){
+	$('#city.autocomplete').autocomplete({
+    data: {
+      <?php
+						$i = 0;
+						foreach ( $city_list as $value )
+						{
+							printf ( "%s\n\"%s\": null", (($i > 0) ? ',' : ''), $value );
+							
+							$i ++;
+						}
+						?>
+    },
+    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+    onAutocomplete: function(val) {
+      // Callback function when value is autcompleted.
+    },
+    minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
+  });
+ 		});
+	  <?php 
+	   	endif;
+	  ?>
+</script>
+ 	
 </body>
 </html>

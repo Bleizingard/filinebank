@@ -6,6 +6,9 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 	<?php
 	if ($this->toolbox->is_logged ())
 	:
+	$menu_product_active = $this->toolbox->get_user_menu_product_active();
+	
+	
 		?>
 		<!-- MENU PRINCIPAL (Connecté) -->
 	<nav class="white" role="navigation">
@@ -32,10 +35,10 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 							class="collapsible-header waves-effect waves-teal">Add new product</a>
 							<div class="collapsible-body" style="display: none;">
 								<ul>
-									<li><a href="<?php echo base_url("product/subcribe/courant"); ?>">Bank Account</a></li>
-									<li><a href="<?php echo base_url("product/subcribe/epargne"); ?>">Saving Account</a></li>
-									<li><a href="<?php echo base_url("product/subcribe/vie"); ?>">Life Insurance</a></li>
-									<li><a href="<?php echo base_url("product/subcribe/mutuelle"); ?>">Mutual Health</a></li>
+									<li><a class="<?php echo $menu_product_active["Checking"]; ?>" href="<?php echo base_url("product/subcribe/checking"); ?>">Bank Account</a></li>
+									<li><a class="<?php echo $menu_product_active["Saving"]; ?>" href="<?php echo base_url("product/subcribe/saving"); ?>">Saving Account</a></li>
+									<li><a href="<?php echo base_url("product/subcribe/life"); ?>">Life Insurance</a></li>
+									<li><a href="<?php echo base_url("product/subcribe/mutual"); ?>">Mutual Health</a></li>
 								</ul>
 							</div></li>
 					</ul>

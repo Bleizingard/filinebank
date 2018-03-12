@@ -28,6 +28,7 @@ class Page extends CI_Controller
 	public function dashboard()
 	{
 		$data["title_page"] = "Dashboard";
+		$data ["menu_product_active"] = $this->toolbox->get_user_menu_product_active();
 		
 		$this->load->view('template/head', $data);
 		$this->load->view('template/header');

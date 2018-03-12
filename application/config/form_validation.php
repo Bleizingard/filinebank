@@ -59,7 +59,30 @@ $config = array (
 				array (
 						'field' => 'password',
 						'label' => 'Password',
-						'rules' => 'trim' ) ) );
+						'rules' => 'trim' ) ),
+		'product/subcribe/checking' => array (
+				array (
+						'field' => 'plan',
+						'label' => 'Plan',
+						'rules' => 'required' ),
+				array (
+						'field' => 'card',
+						'label' => 'Card',
+						'rules' => 'required' ),
+				array (
+						'field' => 'tos',
+						'label' => 'Terms of Sales',
+						'rules' => 'required' ) ),
+		'product/subcribe/saving' => array (
+				array (
+						'field' => 'plan',
+						'label' => 'Plan',
+						'rules' => 'required' ),
+				array (
+						'field' => 'tos',
+						'label' => 'Terms of Sales',
+						'rules' => 'required' ) )
+				);
 
 if (! function_exists ( 'no_space' ))
 {

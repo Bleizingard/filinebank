@@ -35,8 +35,8 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 							class="collapsible-header waves-effect waves-teal">Add new product</a>
 							<div class="collapsible-body" style="display: none;">
 								<ul>
-									<li><a class="<?php echo $menu_product_active["Checking"]; ?>" href="<?php echo base_url("product/subcribe/checking"); ?>">Bank Account</a></li>
-									<li><a class="<?php echo $menu_product_active["Saving"]; ?>" href="<?php echo base_url("product/subcribe/saving"); ?>">Saving Account</a></li>
+									<li><a class="<?php echo (isset($menu_product_active["Checking"]) == TRUE) ? $menu_product_active["Checking"] : ''; ?>" href="<?php echo base_url("product/subcribe/checking"); ?>">Bank Account</a></li>
+									<li><a class="<?php echo (isset($menu_product_active["Saving"]) == TRUE) ? $menu_product_active["Saving"] : ''; ?>" href="<?php echo base_url("product/subcribe/saving"); ?>">Saving Account</a></li>
 									<li><a href="<?php echo base_url("product/subcribe/life"); ?>">Life Insurance</a></li>
 									<li><a href="<?php echo base_url("product/subcribe/mutual"); ?>">Mutual Health</a></li>
 								</ul>

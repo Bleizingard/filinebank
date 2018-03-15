@@ -27,6 +27,11 @@ class Page extends CI_Controller
 	
 	public function dashboard()
 	{
+	    if(!$this->toolbox->is_logged())
+	    {
+	        redirect('/signin');
+	    }
+	    
 		$data["title_page"] = "Dashboard";
 		$data ["menu_product_active"] = $this->toolbox->get_user_menu_product_active();
 		

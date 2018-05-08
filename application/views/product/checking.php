@@ -3,7 +3,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 ?>
 <div class="container">
 	<div class="row valign-wrapper center-align">
-	<?php echo form_open('product/subcribe/checking', array("class" => "col s12 m7 offset-m3 l6 offset-l3", "id" => "checking_form", "novalidate" => "")); ?>
+	<?php echo form_open('product/subcribe/checking', array("class" => "col s12", "id" => "checking_form", "novalidate" => "")); ?>
 	<div class="row">
 			<div class="input-field col s12">
 				<select name="plan">

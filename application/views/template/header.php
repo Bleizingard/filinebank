@@ -84,3 +84,4 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 	</nav>
 	<?php endif; ?>	
 </header>
+<main>

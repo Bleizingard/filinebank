@@ -2,7 +2,7 @@
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 ?>
 <div class="container">
-	<div class="row valign-wrapper center-align">
+	<div class="row center-align">
 		<div class="col s12 m12 l5 z-depth-5">
 			<h3>Checking Account</h3>
 			<p>Denique Antiochensis ordinis vertices sub uno elogio iussit occidi
@@ -27,7 +27,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 
 		</div>
 	</div>
-	<div class="row valign-wrapper center-align">
+	<div class="row center-align">
 		<div class="col s12 m12 l5 z-depth-5">
 			<h3>Life Insurance</h3>
 			<p>Denique Antiochensis ordinis vertices sub uno elogio iussit occidi

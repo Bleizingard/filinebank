@@ -7,6 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- Compiled and minified CSS -->
   	<link href="<?php echo base_url("assets/css/materialize.min.css");?>" rel="stylesheet" media="screen,projection">
   	<link href="<?php echo base_url("assets/css/style.css");?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+  	<?php 
+  	if($this->toolbox->is_logged ()) :
+  	?>
+  	<link href="<?php echo base_url("assets/css/fullscreensidemenu.css");?>" type="text/css" rel="stylesheet" media="screen,projection"/>
+  	<?php
+  		endif;
+  	?>
   	<!-- <link href="<?php echo base_url("assets/font/roboto/");?>" rel="stylesheet">  -->
   	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!--Import Google Icon Font-->

@@ -23,7 +23,7 @@ defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 							class="collapsible-header waves-effect waves-teal">Consultation</a>
 							<div class="collapsible-body" style="display: none;">
 								<ul>
-									<li><a href="<?php echo base_url(); ?>">Bank Account</a></li>
+									<li><a href="<?php echo base_url("account/consultation"); ?>">Bank Account</a></li>
 									<li><a href="<?php echo base_url(); ?>">Insurance</a></li>
 								</ul>
 							</div></li>

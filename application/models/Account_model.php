@@ -21,7 +21,7 @@ class Account_model extends CI_Model
 		}
 		
 		$user["idWorker"] = $this->get_salarie_less_client($user_data["idBank"])->row()->Id;
-		
+		$user["idCustomerGroup"] = 1;
 		if ($this->db->insert('Address', $address_data))
 		{
 			$idAddress = $this->db->insert_id();
@@ -69,7 +69,19 @@ class Account_model extends CI_Model
 	{
 		return $this->db->get("SocialPlan");
 	}
-	
+	public function get_accountBalance($idUser, $dateFilter = false)
+	{
+		$this->db->select("*");
+		$this->db->where ("Id", $idUser);
+		
+		if($dateFilter)
+		{
+			$this->db->where ("Date >", date('Y-m-d', strtotime('-7 days')));
+		}
+		$data = $this->db->get("V_AccountBalanceByUser");
+		
+		return $data->result();
+	}
 	private function get_salarie_less_client(int $idBanque)
 	{	
 		$this->db->select('W.Id, COUNT(*) AS NumClient');

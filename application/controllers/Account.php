@@ -326,6 +326,28 @@ class Account extends CI_Controller
 		{
 			redirect('/signin');
 		}
-	}	
+	}
+	public function consultation()
+	{
+		if($this->toolbox->is_logged())
+		{
+			$data["title_page"] = "Consultation de l'historique";
+			$data ["user_data"] = $this->session->get_userdata("user")["user"];
+			/*
+			 * Récupération de l'historique des opérations
+			 */
+			$data["history"] =	$this->account_model->get_accountBalance($data ["user_data"]->Id, ($data ["user_data"]->IdCustomerGroup == 2));
+			
+			$this->load->view ( 'template/head', $data );
+			$this->load->view ( 'template/header' );
+			$this->load->view ( 'account/history', $data );
+			$this->load->view ( 'template/footer' );
+		}
+		else
+		{
+			redirect('/signin');
+		}
+		
+	}
 }
 ?>

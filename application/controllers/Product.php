@@ -74,6 +74,7 @@ class Product extends CI_Controller
 		$this->load->view ( 'product/success', $data );
 		$this->load->view ( 'template/footer' );
 	}
+	
 	private function checking_subcribe()
 	{
 		/*
